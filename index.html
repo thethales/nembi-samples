@@ -1,117 +1,132 @@
-<style>
-    /* Crucial */
-    .highlight {
-        background-color: #63a74c;
-    }
+<!DOCTYPE html>
+<html lang="pt-br">
 
-    /* Just for styling */
-    body {
-        font-family: 'Inter', sans-serif;
-    }
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge, chrome=1" />
+    <title>Regex</title>
+    <link rel="stylesheet" href="" />
+</head>
 
-    .container {
-        box-sizing: border-box;
-        margin: 0 auto;
-        width: 500px;
-        padding: 0 2%;
-    }
+<body>
+    <style>
+        /* Crucial */
+        .highlight {
+            background-color: #63a74c;
+        }
 
-    .search-container {
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        margin: 10px auto 20px auto;
-        width: 460px;
-    }
+        /* Just for styling */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
 
-    .text-container{
-        background-color: #F1F1F1;
-        border: 2px solid black;
-        border-radius: 5px;
-    }
+        .container {
+            box-sizing: border-box;
+            margin: 0 auto;
+            width: 500px;
+            padding: 0 2%;
+        }
 
-    label {
-        color: #535353;
-        font-family: 'Dosis', sans-serif;
-        font-size: 14px;
-        margin-bottom: 6px;
-        text-transform: uppercase;
-    }
+        .search-container {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            margin: 10px auto 20px auto;
+            width: 460px;
+        }
 
-    input {
-        background: #fff;
-        border: 1px solid #535353;
-        border-radius: 4px;
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
-        font-size: 14px;
-        height: 38px;
-        line-height: 38px;
-        outline: none;
-        padding: 0 10px;
-        transition: all 0.5s;
-        width: 100%;
-    }
+        .text-container {
+            background-color: #F1F1F1;
+            border: 2px solid black;
+            border-radius: 5px;
+        }
 
-    input {
-        border: 2px solid black;
-        margin-top: 5px;
-    }
+        label {
+            color: #535353;
+            font-family: 'Dosis', sans-serif;
+            font-size: 14px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
 
-    input:focus {
-        border: 1px solid #3a5bd3;
-        box-shadow: 0 0 4px 0 #7d90de;
-    }
+        input {
+            background: #fff;
+            border: 1px solid #535353;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            height: 38px;
+            line-height: 38px;
+            outline: none;
+            padding: 0 10px;
+            transition: all 0.5s;
+            width: 100%;
+        }
 
-    blockquote {
+        input {
+            border: 2px solid black;
+            margin-top: 5px;
+        }
 
-        background-color: #f1f1f1;
-        border-radius: 0 4px 4px 0;
-        color: #515151;
-        font-style: italic;
-        line-height: 1.7;
-        margin: 0;
-        padding: 20px 60px 20px 20px;
-        position: relative;
-    }
+        input:focus {
+            border: 1px solid #3a5bd3;
+            box-shadow: 0 0 4px 0 #7d90de;
+        }
 
-    blockquote::before {
-        color: #ccc;
-        border-radius: 10px;
-        font-size: 80px;
-        position: absolute;
-        right: 30px;
-        top: -20px;
-    }
-</style>
+        blockquote {
 
-<script>
-    const $box = document.getElementById('box');
-    const $search = document.getElementById('search');
+            background-color: #f1f1f1;
+            border-radius: 0 4px 4px 0;
+            color: #515151;
+            font-style: italic;
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px 60px 20px 20px;
+            position: relative;
+        }
 
-    $search.addEventListener('input', (event) => {
-        const searchText = event.target.value;
-        const regex = new RegExp(searchText, 'gi');
+        blockquote::before {
+            color: #ccc;
+            border-radius: 10px;
+            font-size: 80px;
+            position: absolute;
+            right: 30px;
+            top: -20px;
+        }
+    </style>
 
-        let text = $box.innerHTML;
-        text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
+    <script>
+        const $box = document.getElementById('box');
+        const $search = document.getElementById('search');
 
-        const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
-        $box.innerHTML = newText;
-    });
-</script>
+        $search.addEventListener('input', (event) => {
+            const searchText = event.target.value;
+            const regex = new RegExp(searchText, 'gi');
 
-<div class="container">
-    <div class="search-container">
-        <label for="search">Digite um padrão REGEX</label>
-        <input id="search" placeholder="Digite Pormade por exemplo" type="search" autocomplete="off" />
+            let text = $box.innerHTML;
+            text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
+
+            const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
+            $box.innerHTML = newText;
+        });
+    </script>
+
+    <div class="container">
+        <div class="search-container">
+            <label for="search">Digite um padrão REGEX</label>
+            <input id="search" placeholder="Digite Pormade por exemplo" type="search" autocomplete="off" />
+        </div>
+        <div class="text-container">
+            <figure>
+                <blockquote id="box">
+                    Número CEP Pormade Teste 4489ABC Tulio
+                </blockquote>
+            </figure>
+        </div>
     </div>
-    <div class="text-container">
-        <figure>
-            <blockquote id="box">
-                Número CEP Pormade Teste 4489ABC Tulio
-            </blockquote>
-        </figure>
-    </div>
-</div>
 
+
+</body>
+
+</html>
