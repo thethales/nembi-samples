@@ -96,7 +96,7 @@
         }
     </style>
 
- 
+
 
     <div class="container">
         <div class="search-container">
@@ -115,18 +115,21 @@
 
 </body>
 <script>
-    const box = document.getElementById('box');
-    const search = document.getElementById('search');
+    (function () {
+        const box = document.getElementById('box');
+        const search = document.getElementById('search');
 
-    search.addEventListener('input', function (evt) {
-        const searchText = event.target.value;
-        const regex = new RegExp(searchText, 'gi');
+        search.addEventListener('input', function (evt) {
+            const searchText = event.target.value;
+            const regex = new RegExp(searchText, 'gi');
 
-        let text = box.innerHTML;
-        text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
+            let text = box.innerHTML;
+            text = text.replace(/(<mark class="highlight">|<\/mark>)/gim, '');
 
-        const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
-        box.innerHTML = newText;
-    });
+            const newText = text.replace(regex, '<mark class="highlight">$&</mark>');
+            box.innerHTML = newText;
+        });
+    })();
 </script>
+
 </html>
